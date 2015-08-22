@@ -25,6 +25,9 @@
     <ul class="list-group">
       <li ng-repeat="task in newChallenge.tasks" ng-if="checkRelativeDate(task.relativeDate)" class="list-group-item">
         <span>{{ task.description }}</span>
+        <span style="float:right">
+          <button ng-click="removeNewChallengeTask($index)">Remove</button>
+        </span>
       </li>
     </ul>
     <div class="input-group">
