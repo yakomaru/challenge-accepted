@@ -45,9 +45,10 @@ exports.addChallenges = function(req, res){
 exports.removeUserChallenges = function(req, res){
   if(req.user){
     return User.find({_id: req.user._id}, function(err, user){
-      user[0].challenges = user[0].challenges.filter(function(challenge){
+      console.log(user[0].challenges);
+      user[0].challenges = user[0].challenges.filter(function(challenge, index){
         if(challenge){
-          return challenge._id.toString() !== req.body._id;
+          return index !== req.body.index;
         } else {
           return false;
         }

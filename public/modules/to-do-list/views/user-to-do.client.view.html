@@ -35,7 +35,9 @@
         <div ng-repeat="challenge in userChallenges" ng-init="challengeIndex = $index">
           <div class="panel panel-primary">
               <div class="panel-heading">
+                  <div style="border-radius:10px;width:10px;height:10px;float:right;background-color:white" ng-click="removeChallenge(challengeIndex)"></div>
                   <h3 data-ng-bind="challenge.name" class="panel-title"></h3>
+
               </div>
               <ul class="list-group">
                 <li class="list-group-item" ng-repeat="task in challenge.tasks" ng-if="checkDate(task.taskSchedule)" ng-init="index= $index">
