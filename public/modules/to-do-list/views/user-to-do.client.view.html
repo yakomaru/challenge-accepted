@@ -13,8 +13,15 @@
             </span>
           </div>
           <ul class="list-group">
-            <li ng-repeat="task in tasks" ng-if="checkDate(task.taskSchedule)" class="list-group-item"><span ng-click="completeUserTask($index)" class="ex-img"><img src="modules/to-do-list/img/ex.png"></span><span ng-if="task.completed" class="completed">{{ task.description }}</span>
-            <span ng-if="!task.completed" class="not-completed">{{ task.description }}</span></li>
+            <li ng-repeat="task in tasks" ng-if="checkDate(task.taskSchedule)" class="list-group-item">
+            <span ng-click="completeUserTask($index)" class="ex-img">
+              <img src="modules/to-do-list/img/ex.png">
+            </span>
+            <span ng-if="task.completed" class="completed">{{ task.description }}</span>
+            <span ng-if="!task.completed" class="not-completed">{{ task.description }}</span> 
+            <span style="float:right">
+              <button ng-click="removeTask($index)">Remove</button>
+            </span></li>
           </ul>
           <div class="input-group">
             <span class="input-group-btn">
@@ -32,7 +39,9 @@
               </div>
               <ul class="list-group">
                 <li class="list-group-item" ng-repeat="task in challenge.tasks" ng-if="checkDate(task.taskSchedule)">
-                  <span ng-click="completeChallengeTask($index)" class="ex-img"><img src="modules/to-do-list/img/ex.png"></span><span ng-if="task.completed" class="completed">{{ task.description }}</span>
+                  <span ng-click="completeChallengeTask($index)" class="ex-img">
+                    <img src="modules/to-do-list/img/ex.png">
+                  </span><span ng-if="task.completed" class="completed">{{ task.description }}</span>
                   <span ng-if="!task.completed" class="not-completed">{{ task.description }}</span>
                 </li>
               </ul>

@@ -12,6 +12,7 @@ module.exports = function(app) {
 	// Setting up the users tasks routes
 	app.route('/users/tasks').get(users.getUserTasks); // get all tasks from user
 	app.route('/users/tasks').put(users.putUserTasks); // add single task to user tasks array
+	app.route('/users/tasks').post(users.removeTask);
 	app.route('/users/tasks/remove').put(users.removeUserTasks); //delete a task from user tasks array
 	app.route('/users/tasks/update').put(users.toggleUserTask); // toggle completion of task
 
