@@ -100,6 +100,10 @@ var UserSchema = new Schema({
 	rewardsObtained:{
 		type: Array,
 		default: []
+	},
+	friendsList:{
+		type: Array,
+		default: []
 	}
 
 });

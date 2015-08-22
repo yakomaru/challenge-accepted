@@ -17,6 +17,10 @@ var ChallengeSchema = new Schema({
   tasks: {
     type: Array,
     default: []
+  },
+  completed:{
+    type: Boolean,
+    default: false
   }
 });
 
