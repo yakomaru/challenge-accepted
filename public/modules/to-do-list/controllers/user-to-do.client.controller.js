@@ -78,6 +78,7 @@ angular.module('to-do-list').controller('UserToDoController', ['$scope', 'Authen
      $scope.removeTask = function(index){
       Todo.removeTask(index);
       console.log('removing: ' + $scope.tasks[index].description);
+      $scope.getUserTasks();
      };
 
     $scope.completeUserTask = function(index){
