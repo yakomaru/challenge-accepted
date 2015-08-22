@@ -175,6 +175,13 @@ angular.module('to-do-list').controller('UserToDoController', ['$scope', 'Authen
       });
      };
 
+    //removeChallengeTasks
+      $scope.removeChallengeTask = function(index){
+      Todo.removeChallengeTask(index);
+      console.log('removing: ' + $scope.tasks[index].description);
+      $scope.getUserChallenges();
+     };
+
     //Initialization function for getting initial user data
     $scope.init = function(){
       $scope.getUserTasks();

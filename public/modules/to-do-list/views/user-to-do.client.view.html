@@ -43,6 +43,9 @@
                     <img src="modules/to-do-list/img/ex.png">
                   </span><span ng-if="task.completed" class="completed">{{ task.description }}</span>
                   <span ng-if="!task.completed" class="not-completed">{{ task.description }}</span>
+                  <span style="float:right">
+                    <button ng-click="removeChallengeTask($index)">Remove</button>
+                  </span>
                 </li>
               </ul>
           </div>
