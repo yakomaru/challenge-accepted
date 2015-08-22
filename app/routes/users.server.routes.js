@@ -20,6 +20,7 @@ module.exports = function(app) {
 	app.route('/users/challenges').get(users.getAllUserChallenges); // get all challenges from user
 	app.route('/users/challenges').put(users.addChallenges); // add challenge to user challenges array
 	app.route('/users/challenges/remove').put(users.removeUserChallenges); // remove challenge from user challenges array
+	app.route('/users/challenges/tasks/remove').post(users.removeChallengeTask);
 
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);

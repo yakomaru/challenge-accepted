@@ -131,11 +131,12 @@ angular.module('to-do-list').factory('Todo', ['$http',
     };
 
     //Remove Challenge Task
-    var removeChallengeTask = function(index){
+    var removeChallengeTask = function(challengeIndex,index){
       return $http({
         method: 'POST',
-        url: '/challenges/remove',
-        data: {index: index}
+        url: '/users/challenges/tasks/remove',
+        data: {index: index,
+              challengeIndex: challengeIndex}
       })
       .then(function(response){
         return response;
@@ -172,7 +173,8 @@ angular.module('to-do-list').factory('Todo', ['$http',
       updateUserTask: updateUserTask,
       updateChallengeTask: updateChallengeTask,
       addChallenge: addChallenge,
-      removeTask: removeTask
+      removeTask: removeTask,
+      removeChallengeTask: removeChallengeTask
 		};
 	}
 ]);

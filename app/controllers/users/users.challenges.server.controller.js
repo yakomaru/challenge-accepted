@@ -62,3 +62,34 @@ exports.removeUserChallenges = function(req, res){
     });
   }
 };
+
+//remove challenge task
+exports.removeChallengeTask = function(req, res){
+  if(req.user){
+    console.log('removing challenge task');
+    return User.find({_id: req.user._id}, function(err, user){
+      var newArray = [];
+      var newChallenges = [];
+      console.log('challenges: ' + user[0].challenges);
+      console.log('challenge index: ' + req.body.challengeIndex);
+      console.log('task index: ' + req.body.index);
+      console.log('req body: ' + req.body);
+      delete user[0].challenges[req.body.challengeIndex].tasks[req.body.index];
+      for(var i = 0; i < user[0].challenges[req.body.challengeIndex].tasks.length; i++){
+        if(user[0].challenges[req.body.challengeIndex].tasks[i] !== null){
+          newArray.push(user[0].challenges[req.body.challengeIndex].tasks[i]);
+        }
+      }
+      user[0].challenges[req.body.challengeIndex].tasks = newArray;
+      console.log(user[0].challenges[req.body.challengeIndex]);
+      console.log(user[0].challenges[req.body.challengeIndex].tasks);
+      User.update({_id: req.user._id}, {challenges: user[0].challenges}, {upsert: true}, function(err, item) {
+        res.send();
+    });
+    });
+  } else {
+    return res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
