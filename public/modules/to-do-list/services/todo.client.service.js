@@ -72,6 +72,21 @@ angular.module('to-do-list').factory('Todo', ['$http',
         console.log(err);
       });
     };
+
+    //Remove Task
+    var removeTask = function(index){
+      return $http({
+        method: 'POST',
+        url: '/users/tasks',
+        data: {index: index}
+      }).then(function(response){
+        return response;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
     //Change
     var updateUserTask = function(taskId){
       return $http({
@@ -142,7 +157,8 @@ angular.module('to-do-list').factory('Todo', ['$http',
       putUserTask: putUserTask,
       updateUserTask: updateUserTask,
       updateChallengeTask: updateChallengeTask,
-      addChallenge: addChallenge
+      addChallenge: addChallenge,
+      removeTask: removeTask
 		};
 	}
 ]);

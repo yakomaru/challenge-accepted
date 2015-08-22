@@ -38,6 +38,32 @@ exports.putUserTasks = function(req,res){
   }
 };
 
+//remove task from user
+exports.removeTask = function(req,res){
+  if(req.user){
+    User.find({_id: req.user._id}, function(err, item){
+      var newArray = [];
+      console.log(item[0].tasks[req.body.index]);
+      delete item[0].tasks[req.body.index];
+      for(var i = 0; i < item[0].tasks.length; i++){
+        if(item[0].tasks[i] !== null){
+          newArray.push(item[0].tasks[i]);
+        }
+      }
+
+      console.log(item[0].tasks);
+      User.update({_id: req.user._id}, {tasks: newArray}, {upsert: true}, function(err, item) {
+        res.send();
+      });
+    });
+  }else{
+    return res.status(400).send({
+      message: 'Could not remove task'
+
+    });
+  }
+};
+
 // toggles completion state of a task in user's array
 exports.toggleUserTask = function(req,res){ 
   if(req.user){
