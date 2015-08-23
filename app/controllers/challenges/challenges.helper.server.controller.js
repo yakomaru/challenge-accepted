@@ -3,7 +3,8 @@
 var mongoose = require('mongoose'),
   passport = require('passport'),
   Challenges = mongoose.model('Challenge'),
-  Task = mongoose.model('Task');
+  Task = mongoose.model('Task'),
+  Org = mongoose.model('Org');
 
 // this functions returns all documents in challenges table
 exports.getChallenges = function(req,res){

@@ -163,7 +163,7 @@ angular.module('to-do-list').factory('Todo', ['$http',
         url: '/users/challenges/check',
         data: {index: index}
       }).then(function(response){
-        console.log("Http response for checkChallengeComplete" +response);
+        console.log('Http response for checkChallengeComplete' +response);
         return response;
       },function(err){
         console.log(err);
