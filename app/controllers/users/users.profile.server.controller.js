@@ -64,6 +64,39 @@ exports.search = function(req, res){
   }
 };
 
+exports.add = function(req, res){
+	var addedUser = req.userName;
+	if(req.user){
+    return User.find({_id: req.user._id}, function(err, user){
+    	user[0].friendsList.push(req.body.userName);
+    	console.log(user[0].friendsList);
+    	User.update({_id: req.user._id}, {tasks: user[0].friendsList}, {upsert: true}, function(err, item) {
+        res.send();
+      });
+    });
+  } else {
+
+    return res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
+exports.retrieveFriends = function(req, res){
+	var addedUser = req.userName;
+	if(req.user){
+    return User.find({_id: req.user._id}, function(err, user){
+    	console.log('loading friends list for user: '+ user[0].friendsList);
+        res.send(user[0].friendsList);
+      });
+  } else {
+
+    return res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
 /**
  * Send User
  */
