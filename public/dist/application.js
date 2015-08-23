@@ -56,6 +56,7 @@ ApplicationConfiguration.registerModule('to-do-list');
 ApplicationConfiguration.registerModule('users');
 'use strict';
 
+
 // Setting up route
 angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 	function($stateProvider, $urlRouterProvider) {
