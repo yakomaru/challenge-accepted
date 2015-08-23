@@ -71,10 +71,6 @@ exports.removeChallengeTask = function(req, res){
     return User.find({_id: req.user._id}, function(err, user){
       var newArray = [];
       var newChallenges = [];
-      console.log('challenges: ' + user[0].challenges);
-      console.log('challenge index: ' + req.body.challengeIndex);
-      console.log('task index: ' + req.body.index);
-      console.log('req body: ' + req.body);
       delete user[0].challenges[req.body.challengeIndex].tasks[req.body.index];
       for(var i = 0; i < user[0].challenges[req.body.challengeIndex].tasks.length; i++){
         if(user[0].challenges[req.body.challengeIndex].tasks[i] !== null){
@@ -86,6 +82,34 @@ exports.removeChallengeTask = function(req, res){
       console.log(user[0].challenges[req.body.challengeIndex].tasks);
       User.update({_id: req.user._id}, {challenges: user[0].challenges}, {upsert: true}, function(err, item) {
         res.send();
+    });
+    });
+  } else {
+    return res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
+//Check to see if challenge completed
+exports.checkChallengeComplete = function(req, res){
+  var completed = 0;
+  if(req.user){
+    console.log('Checking if challenge completed');
+    return User.find({_id: req.user._id}, function(err, user){
+      console.log(user[0].challenges[req.body.index].tasks);
+      for(var i = 0; i < user[0].challenges[req.body.index].tasks.length; i++){
+        if(user[0].challenges[req.body.index].tasks[i].completed){
+          completed++;
+        }
+      }
+      if(completed === user[0].challenges[req.body.index].tasks.length){
+        user[0].challenges[req.body.index].completed = true;
+      }else{
+        user[0].challenges[req.body.index].completed = false;
+      }
+      User.update({_id: req.user._id}, {challenges: user[0].challenges}, {upsert: true}, function(err, item) {
+        res.send(user[0].challenges[req.body.index].completed);
     });
     });
   } else {

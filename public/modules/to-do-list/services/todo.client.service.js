@@ -157,6 +157,19 @@ angular.module('to-do-list').factory('Todo', ['$http',
       });
     };
 
+    var checkChallengeComplete = function(index){
+      return $http({
+        method: 'POST',
+        url: '/users/challenges/check',
+        data: {index: index}
+      }).then(function(response){
+        console.log("Http response for checkChallengeComplete" +response);
+        return response;
+      },function(err){
+        console.log(err);
+      });
+    };
+
     //curl -H "Content-Type: application/json" -X PUT -d '{"name":"test me","description":"test info","reward":"stuff","tasks":[{"description": "one day", "relativeDate": 1},{"description": "two day", "relativeDate": 2}]}' https://heraapphrr7.herokuapp.com/challenges
 
     // var removeUserTask = function(id){
@@ -187,7 +200,8 @@ angular.module('to-do-list').factory('Todo', ['$http',
       addChallenge: addChallenge,
       removeTask: removeTask,
       removeChallengeTask: removeChallengeTask,
-      removeChallenge: removeChallenge
+      removeChallenge: removeChallenge,
+      checkChallengeComplete: checkChallengeComplete
 		};
 	}
 ]);

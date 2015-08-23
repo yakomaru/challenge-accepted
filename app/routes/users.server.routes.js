@@ -21,11 +21,13 @@ module.exports = function(app) {
 	app.route('/users/challenges').put(users.addChallenges); // add challenge to user challenges array
 	app.route('/users/challenges/remove').put(users.removeUserChallenges); // remove challenge from user challenges array
 	app.route('/users/challenges/tasks/remove').post(users.removeChallengeTask);
+	app.route('/users/challenges/check').post(users.checkChallengeComplete);
 
 	//Setting up friendsList routes
 	app.route('/users/friends/search').post(users.search);
 	app.route('/users/friends/add').post(users.add);
 	app.route('/users/friends/').get(users.retrieveFriends);
+
 
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);
