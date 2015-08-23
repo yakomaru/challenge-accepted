@@ -1,0 +1,59 @@
+<section data-ng-controller="ProfileController">
+	<div style=" align: top; text-align: center; float:left; overflow-y: auto">
+    <div>
+    <h3>
+     {{authentication.user.displayName}}
+    </h3>
+    <img src="http://ymcawellington.org.nz/wp-content/uploads/2013/07/person-placeholder.jpg" width="150px" height="150px"/>
+    </div>
+    <div>
+    <h3>
+      Friends List
+    </h3>
+    <ul>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+      <li>
+      asdf
+      </li>
+ 
+    </ul>
+    </div>
+  </div>
+  <div style="overflow:hidden; text-align: center;">
+    <h3>Completed Challenges</h3>
+
+     <div ng-repeat="challenge in userChallenges" ng-init="challengeIndex = $index">
+       <div class="panel-heading">
+          <h3 class="panel-title">{{challenge.name}}</h3>
+       </div>
+    </div>
+ </div>
+
+
+</section>
