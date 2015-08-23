@@ -19,9 +19,40 @@ angular.module('profile').factory('Friendsearch', ['$http',
       });
     };
 
+    var add = function(userName){
+    return $http({
+        method: 'POST',
+        data: {userName: userName},
+        url: '/users/friends/add'
+      })
+      .then(function(response){
+      	console.log(response);
+        return response.data;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
+    var retrieveFriends = function(userName){
+    return $http({
+        method: 'GET',
+        url: '/users/friends/'
+      })
+      .then(function(response){
+      	console.log(response);
+        return response.data;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
 		// Public API
 		return {
-			search: search
+			search: search,
+			add: add,
+			retrieveFriends: retrieveFriends
 			
 		};
 	}
