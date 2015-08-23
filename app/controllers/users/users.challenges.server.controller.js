@@ -4,7 +4,6 @@ var _ = require('lodash'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Challenge = mongoose.model('Challenge');
-  // Org = mongoose.model('Org');
 
 
 // get all challenges from user -get
