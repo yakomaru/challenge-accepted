@@ -109,7 +109,7 @@ angular.module('to-do-list').controller('UserToDoController', ['$scope', 'Authen
 
     $scope.checkChallengeComplete = function(index){
       Todo.checkChallengeComplete(index).then(function(response){
-        console.log("challenge complete: "+response);
+        console.log('challenge complete: '+response);
       });
     };
 
@@ -186,14 +186,14 @@ angular.module('to-do-list').controller('UserToDoController', ['$scope', 'Authen
     //removeChallengeTask
       $scope.removeChallengeTask = function(challengeIndex, index){
       Todo.removeChallengeTask(challengeIndex, index);
-      console.log("challenge index, index" + challengeIndex + index);
+      console.log('challenge index, index' + challengeIndex + index);
       $scope.getUserChallenges();
      };
 
     //remove Challenge
     $scope.removeChallenge = function(id){
       Todo.removeChallenge(id);
-      console.log("removing challenge");
+      console.log('removing challenge');
       $scope.getUserChallenges();
     };
     //Initialization function for getting initial user data
