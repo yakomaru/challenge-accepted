@@ -42,7 +42,7 @@
               </div>
               <ul class="list-group">
                 <li class="list-group-item" ng-repeat="task in challenge.tasks" ng-if="checkDate(task.taskSchedule)" ng-init="index= $index">
-                  <span ng-click="completeChallengeTask($index)" class="ex-img">
+                  <span ng-click="completeChallengeTask(challengeIndex)" class="ex-img">
                     <img src="modules/to-do-list/img/ex.png">
                   </span><span ng-if="task.completed" class="completed">{{ task.description }}</span>
                   <span ng-if="!task.completed" class="not-completed">{{ task.description }}</span>

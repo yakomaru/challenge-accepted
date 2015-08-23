@@ -18,8 +18,8 @@
   <div style="overflow:hidden; text-align: center;">
     <h3>Completed Challenges</h3>
 
-     <div ng-repeat="challenge in userChallenges" ng-init="challengeIndex = $index">
-       <div class="panel-heading">
+     <div ng-repeat="challenge in userChallenges">
+       <div class="panel-heading" ng-show="challenge.completed">
           <h3 class="panel-title">{{challenge.name}}</h3>
        </div>
     </div>

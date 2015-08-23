@@ -23,8 +23,8 @@ angular.module('to-do-list').controller('UserToDoController', ['$scope', 'Authen
     $scope.getUserChallenges = function(){
       Todo.getUserChallenges()
       .then(function(res){
-        console.log('getUserChallenges res.data');
-        console.log(res.data);
+        // console.log('getUserChallenges res.data');
+        // console.log(res.data);
         //sets scope.userChallenges to the array of challenges the user is involved in
         $scope.userChallenges = res.data;
       }, function(err){
@@ -100,8 +100,16 @@ angular.module('to-do-list').controller('UserToDoController', ['$scope', 'Authen
       Todo.updateChallengeTask(this.task._id, this.$parent.challenge._id) //this.task._id === right task
       .then(function(res){
         $scope.getUserChallenges();
+        $scope.checkChallengeComplete(index);
       },function(err){
         console.log(err);
+      });
+
+    };
+
+    $scope.checkChallengeComplete = function(index){
+      Todo.checkChallengeComplete(index).then(function(response){
+        console.log("challenge complete: "+response);
       });
     };
 
