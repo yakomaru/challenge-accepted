@@ -17,10 +17,6 @@ var OrgSchema = new Schema({
 		required: 'Please fill in an organization name',
 		trim: true
 	},
-	displayName: {
-		type: String,
-		trim: true
-	},
 	provider: {
 		type: String,
 		required: 'Provider is required'
@@ -66,9 +62,9 @@ OrgSchema.statics.findUniqueOrgname = function(orgname, suffix, callback) {
 
 	_this.findOne({
 		orgname: possibleOrgname
-	}, function(err, user) {
+	}, function(err, org) {
 		if (!err) {
-			if (!user) {
+			if (!org) {
 				callback(possibleOrgname);
 			} else {
 				return _this.findUniqueOrgname(orgname, (suffix || 0) + 1, callback);
