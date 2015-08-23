@@ -8,13 +8,13 @@
 
 
 // /**
-//  * User Schema
+//  * Org Schema
 //  */
 // var OrgSchema = new Schema({
 // 	orgname: {
 // 		type: String,
 // 		unique: 'testing error message',
-// 		required: 'Please fill in a organization name',
+// 		required: 'Please fill in an organization name',
 // 		trim: true
 // 	},
 // 	displayName: {
@@ -60,5 +60,23 @@
 
 // });
 
+// OrgSchema.statics.findUniqueOrgname = function(orgname, suffix, callback) {
+// 	var _this = this;
+// 	var possibleOrgname = orgname + (suffix || '');
+
+// 	_this.findOne({
+// 		orgname: possibleOrgname
+// 	}, function(err, user) {
+// 		if (!err) {
+// 			if (!user) {
+// 				callback(possibleOrgname);
+// 			} else {
+// 				return _this.findUniqueOrgname(orgname, (suffix || 0) + 1, callback);
+// 			}
+// 		} else {
+// 			callback(null);
+// 		}
+// 	});
+// };
 
 // mongoose.model('Org', OrgSchema);
