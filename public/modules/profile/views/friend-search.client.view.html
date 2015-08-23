@@ -1,3 +1,17 @@
-<section data-ng-controller="FriendsearchController">
-	This is the Friend search
+<section data-ng-controller="ProfileController">
+	<div style="text-align: center; margin-top: 10%; margin-bottom: 25%">
+  Search Members:
+  <input type="text" ng-model="userName">
+  <button ng-click="search(userName)">Submit</button>
+  </div>
+  <div ng-show="searching">
+  <h3>RESULTS:
+  </h3>
+  <ul>
+    <li ng-repeat="names in searchResults">
+      {{names.displayName}}
+      <button on-click="add(names.displayName)">Add</button>
+    </li>
+  </ul>
+  </div>
 </section>

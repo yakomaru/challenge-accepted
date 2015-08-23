@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('profile').controller('ProfileController', ['$scope', 'Authentication', 'Todo',
-	function($scope, Authentication, Todo) {
+angular.module('profile').controller('ProfileController', ['$scope', 'Authentication', 'Todo', 'Friendsearch',
+	function($scope, Authentication, Todo, Friendsearch) {
 		// Controller Logic
 		// ...
-    $scope.authentication = Authentication;
 
+    $scope.authentication = Authentication;
       $scope.getUserChallenges = function(){
       Todo.getUserChallenges()
       .then(function(res){
@@ -39,8 +39,20 @@ angular.module('profile').controller('ProfileController', ['$scope', 'Authentica
       });
      };
 
+     $scope.search = function(userName){
+      console.log('searching for userName');
+      Friendsearch.search(userName).then(function(results){
+        $scope.searchResults = results;
+        $scope.searching = true;
+        console.log('results: '+ $scope.searchResults);
+      });
+      
+      
+     };
+
     $scope.init =function(){
       $scope.getUserChallenges();
+      $scope.searching = false;
     };
     $scope.init();
 	}

@@ -48,6 +48,22 @@ exports.update = function(req, res) {
 	}
 };
 
+exports.search = function(req, res){
+	var searchedUser = req.userName;
+  if(req.user){
+    return User.find({username: req.body.userName}, function(err, user){
+    	console.log(req.body.userName);
+    	console.log(user);
+    	res.send(user);
+    });
+  } else {
+
+    return res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
 /**
  * Send User
  */
