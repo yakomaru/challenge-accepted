@@ -40,7 +40,8 @@ angular.module('profile').factory('Friendsearch', ['$http',
         url: '/users/friends/'
       })
       .then(function(response){
-      	console.log(response);
+      	console.log('friends list:' + response);
+      	console.log('friends list data:' + response.data);
         return response.data;
       },
       function(err){
