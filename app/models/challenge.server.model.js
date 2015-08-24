@@ -21,7 +21,11 @@ var ChallengeSchema = new Schema({
   completed:{
     type: Boolean,
     default: false
-  }
+  },
+   category: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Category'
+  }]
 });
 
 mongoose.model('Challenge', ChallengeSchema);
