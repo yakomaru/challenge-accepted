@@ -19,6 +19,19 @@ exports.getAllUserChallenges = function(req, res){
   }
 };
 
+exports.getAllUserOrg = function(req, res){
+  if(req.user){
+    return User.find({_id: req.user._id}, function(err, item){
+      res.send(item[0].org);
+    });
+  } else {
+    return res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
+
 // add challenge to user challenges array -subscribe
 exports.addChallenges = function(req, res){
   if(req.user){
@@ -30,6 +43,27 @@ exports.addChallenges = function(req, res){
         });
         user[0].challenges.push(item[0]); //referenced copy? or is db immune?
         User.update({_id: req.user._id}, {challenges: user[0].challenges}, {upsert: true}, function(err, item) {
+          res.send();
+        });
+      });
+    });
+  } else {
+    return res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
+exports.addOrg = function(req, res){
+  if(req.user){
+    return User.find({_id: req.user._id}, function(err, user){
+      Org.find({_id: req.body._id}, function(err,item){
+        var today = Date.now();
+        item[0].tasks.forEach(function(task, i){
+          item[0].tasks[i].taskSchedule = new Date(today + (86400000 * task.relativeDate));
+        });
+        user[0].org.push(item[0]); //referenced copy? or is db immune?
+        User.update({_id: req.user._id}, {challenges: user[0].org}, {upsert: true}, function(err, item) {
           res.send();
         });
       });
@@ -64,6 +98,27 @@ exports.removeUserChallenges = function(req, res){
   }
 };
 
+exports.removeUserOrg = function(req, res){
+  if(req.user){
+    return User.find({_id: req.user._id}, function(err, user){
+      console.log(user[0].org);
+      user[0].challenges = user[0].org.filter(function(org, index){
+        if(org){
+          return index !== req.body.index;
+        } else {
+          return false;
+        }
+      });
+      User.update({_id: req.user._id}, {org: user[0].org}, {upsert: true}, function(err, item) {
+        res.send();
+      });
+    });
+  } else {
+    return res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
 //remove challenge task
 exports.removeChallengeTask = function(req, res){
   if(req.user){

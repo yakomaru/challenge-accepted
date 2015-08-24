@@ -631,10 +631,10 @@ angular.module('to-do-list').factory('Todo', ['$http',
 'use strict';
 
 // Config HTTP Error Handling
-angular.module('users').config(['$httpProvider',
+angular.module('users').config('Todo',['$httpProvider',
 	function($httpProvider) {
 		// Set the httpProvider "not authorized" interceptor
-		$httpProvider.interceptors.push(['$q', '$location', 'Authentication',
+		$httpProvider.interceptors.push(['$q', '$location', 'Authentication', 
 			function($q, $location, Authentication) {
 				return {
 					responseError: function(rejection) {
@@ -713,8 +713,8 @@ angular.module('users').config(['$stateProvider',
 ]);
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication',
-	function($scope, $http, $location, Authentication) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication', 'Todone',
+	function($scope, $http, $location, Authentication, Todone) {
 		$scope.authentication = Authentication;
 
 		// If user is signed in then redirect back home
@@ -732,6 +732,98 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 			});
 		};
 
+    var getUserOrg = function(){
+      return $http({
+        method: 'GET',
+        url: '/org-create'
+      })
+      .then(function(response){
+        return response;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
+    var getAllOrg = function(){
+      return $http({
+        method: 'GET',
+        url: '/org'
+      })
+      .then(function(response){
+        return response;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
+    var putUserOrg = function(id){
+      return $http({
+        method: 'PUT',
+        url: '/org-create',
+        data: {_id: id}
+      })
+      .then(function(response){
+        return response;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
+
+    var addOrg = function(data){
+      return $http({
+        method: 'PUT',
+        url: '/org-create',
+        data: data
+      })
+      .then(function(response){
+        return response;
+      },function(err){
+        console.log(err);
+      });
+    };
+
+    var removeOrg = function(index){
+      return $http({
+        method: 'PUT',
+        url: '/users/org/remove',
+        data: {index: index}
+      }).then(function(response){
+        return response;
+      },function(err){
+        console.log(err);
+      });
+    };
+
+
+    //curl -H "Content-Type: application/json" -X PUT -d '{"name":"test me","description":"test info","reward":"stuff","tasks":[{"description": "one day", "relativeDate": 1},{"description": "two day", "relativeDate": 2}]}' https://heraapphrr7.herokuapp.com/challenges
+
+    // var removeUserTask = function(id){
+    //  return $http({
+    //     method: 'PUT',
+    //     url: '/users/tasks/remove',
+    //     data: {_id: id}
+    //   })
+    //   .then(function(response){
+    //     return response;
+    //   },
+    //   function(err){
+    //     console.log(err);
+    //   });
+    // };
+
+
+
+    // Public API
+    return {
+      getAllOrg: getAllOrg,
+      putUserOrg: putUserOrg,
+      addOrg: addOrg,
+      removeOrg: removeOrg
+		};
 /*		$scope.orgup = function() {
 			$http.post('/users/myorg/create', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
