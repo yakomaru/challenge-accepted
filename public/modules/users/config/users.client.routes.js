@@ -13,6 +13,10 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/myOrg',
 			templateUrl: 'modules/users/views/settings/myorg.client.view.html'
 		}).
+		state('org-create', {
+			url: '/org-create',
+			templateUrl: 'modules/users/views/settings/org-create.client.view.html'
+		}).
 		state('password', {
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'

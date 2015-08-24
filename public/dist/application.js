@@ -673,6 +673,10 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/myOrgs',
 			templateUrl: 'modules/users/views/settings/myorg.client.view.html'
 		}).
+		state('org-create', {
+			url: '/org-create',
+			templateUrl: 'modules/users/views/settings/org-create.client.view.html'
+		}).
 		state('password', {
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
@@ -727,6 +731,19 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.error = response.message;
 			});
 		};
+
+		$scope.orgup = function() {
+			$http.post('/auth/orgup', $scope.credentials).success(function(response) {
+				// If successful we assign the response to the global user model
+				$scope.authentication.org = response;
+
+				// And redirect to the index page
+				$location.path('/');
+			}).error(function(response) {
+				$scope.error = response.message;
+			});
+		};
+
 
 		$scope.signin = function() {
 			$http.post('/auth/signin', $scope.credentials).success(function(response) {
