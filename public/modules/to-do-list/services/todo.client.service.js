@@ -31,6 +31,19 @@ angular.module('to-do-list').factory('Todo', ['$http',
       });
     };
 
+    var getUserOrg = function(){
+      return $http({
+        method: 'GET',
+        url: '/users/org'
+      })
+      .then(function(response){
+        return response;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
     //retrieves all available challenges from the db
     var getAllChallenges = function(){
       return $http({
@@ -44,6 +57,20 @@ angular.module('to-do-list').factory('Todo', ['$http',
         console.log(err);
       });
     };
+
+    var getAllOrg = function(){
+      return $http({
+        method: 'GET',
+        url: '/org'
+      })
+      .then(function(response){
+        return response;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
     //Adds a challenge to user
     var putUserChallenge = function(id){
       return $http({
@@ -58,6 +85,21 @@ angular.module('to-do-list').factory('Todo', ['$http',
         console.log(err);
       });
     };
+
+    var putUserOrg = function(id){
+      return $http({
+        method: 'PUT',
+        url: '/users/org',
+        data: {_id: id}
+      })
+      .then(function(response){
+        return response;
+      },
+      function(err){
+        console.log(err);
+      });
+    };
+
 
     var putUserTask = function(task){
       return $http({
@@ -130,6 +172,21 @@ angular.module('to-do-list').factory('Todo', ['$http',
       });
     };
 
+
+    var addOrg = function(data){
+      return $http({
+        method: 'PUT',
+        url: '/org',
+        data: data
+      })
+      .then(function(response){
+        return response;
+      },function(err){
+        console.log(err);
+      });
+    };
+
+
     //Remove Challenge Task
     var removeChallengeTask = function(challengeIndex,index){
       return $http({
@@ -149,6 +206,18 @@ angular.module('to-do-list').factory('Todo', ['$http',
       return $http({
         method: 'PUT',
         url: '/users/challenges/remove',
+        data: {index: index}
+      }).then(function(response){
+        return response;
+      },function(err){
+        console.log(err);
+      });
+    };
+
+    var removeOrg = function(index){
+      return $http({
+        method: 'PUT',
+        url: '/users/org/remove',
         data: {index: index}
       }).then(function(response){
         return response;
@@ -193,12 +262,16 @@ angular.module('to-do-list').factory('Todo', ['$http',
       getUserTasks: getUserTasks,
       getUserChallenges: getUserChallenges,
       getAllChallenges: getAllChallenges,
+      getAllOrg: getAllOrg,
       putUserChallenge: putUserChallenge,
       putUserTask: putUserTask,
+      putUserOrg: putUserOrg,
       updateUserTask: updateUserTask,
       updateChallengeTask: updateChallengeTask,
+      addOrg: addOrg,
       addChallenge: addChallenge,
       removeTask: removeTask,
+      removeOrg: removeOrg,
       removeChallengeTask: removeChallengeTask,
       removeChallenge: removeChallenge,
       checkChallengeComplete: checkChallengeComplete
