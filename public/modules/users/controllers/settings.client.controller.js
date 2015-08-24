@@ -54,6 +54,28 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.submitted = true;
 			}
 		};
+		//create Org
+/*		$scope.orgup = function() {
+			$http.post('/users/myorg/create', $scope.credentials).success(function(response) {
+				// If successful we assign the response to the global user model
+				$scope.authentication.org = response;
+console.log(response);
+				// And redirect to the index page
+				$location.path('/');
+			}).error(function(response) {
+				$scope.error = response.message;
+			});
+		};
+*/
+
+    $scope.orgup = function(index){
+      Todo.putUserChallenge($scope.allChallenges[index]._id)
+      .then(function(res){
+        $scope.getUserChallenges();
+      }, function(err){
+        console.log(err);
+      });
+     };
 
 		// Change user password
 		$scope.changeUserPassword = function() {
