@@ -2,7 +2,11 @@
 
 var _ = require('lodash'),
   mongoose = require('mongoose'),
+<<<<<<< HEAD
   Org = mongoose.model('Org'),
+=======
+  Org = mongoose.model('org'),
+>>>>>>> eaaef395597590ec4bbe351975b37e172e0b9f69
   Challenge = mongoose.model('Challenge');
 
 

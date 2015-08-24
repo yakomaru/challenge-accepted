@@ -22,4 +22,10 @@ module.exports = function(app) {
 	app.route('/org/challenges/remove').put(org.removeOrgChallenges); // remove challenge from org challenges array
 	app.route('/org/challenges/tasks/remove').post(org.removeChallengeTask);
 	app.route('/org/challenges/check').post(org.checkChallengeComplete);
+<<<<<<< HEAD
+=======
+
+	// Finish by binding the org middleware
+	app.param('orgId', org.orgByID);
+>>>>>>> eaaef395597590ec4bbe351975b37e172e0b9f69
 };
