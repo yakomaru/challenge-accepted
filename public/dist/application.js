@@ -669,6 +669,10 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/profile',
 			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
 		}).
+		state('myOrgs', {
+			url: '/settings/myOrgs',
+			templateUrl: 'modules/users/views/settings/myorg.client.view.html'
+		}).
 		state('password', {
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'

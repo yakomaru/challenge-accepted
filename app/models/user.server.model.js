@@ -104,6 +104,10 @@ var UserSchema = new Schema({
 	friendsList:{
 		type: Array,
 		default: []
+	},
+	org:{
+		type: Array,
+		default: []
 	}
 
 });

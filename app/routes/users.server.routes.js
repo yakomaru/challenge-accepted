@@ -23,6 +23,10 @@ module.exports = function(app) {
 	app.route('/users/challenges/tasks/remove').post(users.removeChallengeTask);
 	app.route('/users/challenges/check').post(users.checkChallengeComplete);
 
+	//Settubg up user org routes
+	app.route('/users/myorg').post(users.getAllUserOrg);
+	app.route('/users/myorg/create').post(users.createOrg);
+
 	//Setting up friendsList routes
 	app.route('/users/friends/search').post(users.search);
 	app.route('/users/friends/add').post(users.add);

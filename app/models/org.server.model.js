@@ -52,6 +52,10 @@ var OrgSchema = new Schema({
 	members:{
 		type: Array,
 		default: []
+	},
+	admins: {
+		type: Array,
+		default: []
 	}
 
 });

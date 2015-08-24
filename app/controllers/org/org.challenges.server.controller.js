@@ -2,7 +2,7 @@
 
 var _ = require('lodash'),
   mongoose = require('mongoose'),
-  Org = mongoose.model('org'),
+  Org = mongoose.model('Org'),
   Challenge = mongoose.model('Challenge');
 
 

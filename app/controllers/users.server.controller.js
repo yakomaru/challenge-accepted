@@ -14,5 +14,6 @@ module.exports = _.extend(
 	require('./users/users.password.server.controller'),
   require('./users/users.profile.server.controller'),
   require('./users/users.tasks.server.controller'),
-  require('./users/users.challenges.server.controller')
+  require('./users/users.challenges.server.controller'),
+  require('./users/users.org.server.controller')
 );
