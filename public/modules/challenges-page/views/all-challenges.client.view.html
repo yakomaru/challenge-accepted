@@ -1,0 +1,9 @@
+<section data-ng-controller="AllChallengesController">
+<span>Welcome</span>
+  <span data-ng-bind="authentication.user.displayName"></span>
+
+
+  <ul class="list-group">
+          <li class="list-group-item list-group-item-success" ng-repeat="challenge in allChallenges">{{challenge.name}} <button ng-click="addChallenge($index)">Add</button><button>More Info</button></li>
+          </ul>
+</section>
