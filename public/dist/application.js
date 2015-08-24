@@ -732,8 +732,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 			});
 		};
 
-/*		$scope.orgup = function() {
-			$http.post('/users/myorg/create', $scope.credentials).success(function(response) {
+		$scope.orgup = function() {
+			$http.post('/auth/orgup', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.org = response;
 
@@ -743,7 +743,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.error = response.message;
 			});
 		};
-*/
+
 
 		$scope.signin = function() {
 			$http.post('/auth/signin', $scope.credentials).success(function(response) {
@@ -808,7 +808,8 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 	function($scope, $http, $location, Users, Authentication) {
 		$scope.user = Authentication.user;
 
-
+		// If user is not signed in then redirect back home
+		if (!$scope.user) $location.path('/');
 
 		// Check if there are additional accounts 
 		$scope.hasConnectedAdditionalSocialAccounts = function(provider) {
