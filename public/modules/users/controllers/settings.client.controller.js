@@ -59,7 +59,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
       Todone.getUserOrg()
       .then(function(res){
         // console.log('getUserOrg res.data');
-        console.log(res.data);
+        console.log(res);
         //sets scope.userOrg to the array of challenges the user is involved in
         $scope.userOrg = res.data;
       }, function(err){

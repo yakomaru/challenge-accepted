@@ -24,8 +24,8 @@ module.exports = function(app) {
 	app.route('/users/challenges/check').post(users.checkChallengeComplete);
 
 	//Settubg up user org routes
-	app.route('/org-create').post(users.getAllUserOrg);
-	app.route('/org-create').post(users.createOrg);
+	app.route('/org-create').get(users.getAllUserOrg);
+	app.route('/org-create').put(users.createOrg);
 
 	//Setting up friendsList routes
 	app.route('/users/friends/search').post(users.search);

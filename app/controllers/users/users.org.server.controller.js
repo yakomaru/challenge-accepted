@@ -10,7 +10,7 @@ var _ = require('lodash'),
 exports.getAllUserOrg = function(req, res){
   if(req.user){
     return User.find({_id: req.user._id}, function(err, item){
-      res.send(item[0].org);
+      res.send(item);
     });
   } else {
     return res.status(400).send({

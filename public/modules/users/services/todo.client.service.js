@@ -46,7 +46,7 @@ angular.module('users').factory('Todone',['$http',
     var addOrg = function(data){
       return $http({
         method: 'PUT',
-        url: '/org-create',
+        url: '/org',
         data: data
       })
       .then(function(response){
